@@ -52,7 +52,22 @@ Here is a pre-start checklist:
 
 ## Implementation
 
-### Testing
+### Phase 1: Planning
+
+**Methodology:** Kanban, tracked with [HiveBox project board](https://github.com/users/rikg215/projects/4)
+
+**senseBox IDs:**
+
+| senseBoxID | Link |
+|---|---|
+| `5eba5fbad46fb8001b799786` | [openSenseMap](https://opensensemap.org/explore/5eba5fbad46fb8001b799786)
+| `5c21ff8f919bf8001adf2488` | [openSenseMap](https://opensensemap.org/explore/5c21ff8f919bf8001adf2488)
+| `5ade1acf223bd80019a1011c` | [openSenseMap](https://opensensemap.org/explore/5ade1acf223bd80019a1011c)
+
+
+### Phase 2: Basics
+
+#### Testing
 
 ```bash
 docker build -t "app-test:v0.0.1" .
