@@ -52,4 +52,12 @@ Here is a pre-start checklist:
 
 ## Implementation
 
-** ADD YOUR IMPLEMENTATION DOCUMENTATION HERE **
+### Testing
+
+```bash
+docker build -t "app-test:v0.0.1" .
+docker run --name "app-test" app-test:v0.0.1
+```
+**EXPECTED OUTPUT**
+
+`v0.0.1`
