@@ -1,0 +1,10 @@
+[project]
+name = "devops-hands-on-project-hivebox"
+version = "0.0.1"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.150.0",
+]
+
+[tool.fastapi]
+entrypoint = "app:app"
