@@ -1,0 +1,50 @@
+name: Hivebox-CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # installs uv and Python 3.13 on the runner
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v10.3.0
+        with:
+          python-version: "3.13"
+
+      # installs everything from uv.lock (fastapi, httpx, pylint, pytest)
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Lint code with pylint
+        run: uv run pylint $(git ls-files '*.py')
+
+      - name: Lint Dockerfile with hadolint
+        uses: hadolint/hadolint-action@v3.4.0
+
+      - name: Run unit tests
+        run: uv run pytest -v
+
+      # builds the image but keeps it on the runner instead of pushing it anywhere
+      - name: Build Docker image
+        uses: docker/build-push-action@v7.4.0
+        with:
+          context: .
+          push: false
+          load: true
+          tags: hivebox:ci
+
+      - name: Test /version endpoint
+        run: |
+            expected=$(uv run python -c "from app import VERSION; print(VERSION)")
+            docker run -d -p 8000:8000 --name hivebox hivebox:ci
+            result=$(curl -sSf --retry 5 --retry-all-errors --retry-delay 2 localhost:8000/version | jq -r '.version')
+            if [ "$result" != "$expected" ]; then
+              echo "Expected: $expected, got: $result"
+              docker logs hivebox
+              exit 1
+            fi
+              
+            
