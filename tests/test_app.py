@@ -1,3 +1,4 @@
+"""fastapi testclient module import"""
 from fastapi.testclient import TestClient
 
 import app as app_module
