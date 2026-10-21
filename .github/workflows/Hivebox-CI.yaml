@@ -40,9 +40,10 @@ jobs:
         run: |
             expected=$(uv run python -c "from app import VERSION; print(VERSION)")
             docker run -d -p 8000:8000 --name hivebox hivebox:ci
-            result=$(curl -sf --retry 5 --retry-connrefused --retry-delay 2 localhost:8000/version | jq -r '.version')
+            result=$(curl -sSf --retry 5 --retry-all-errors --retry-delay 2 localhost:8000/version | jq -r '.version')
             if [ "$result" != "$expected" ]; then
               echo "Expected: $expected, got: $result"
+              docker logs hivebox
               exit 1
             fi
               
