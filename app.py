@@ -1,3 +1,4 @@
+"""Datetime module for ensuring fresh temp values are stored"""
 from datetime import datetime, timedelta, timezone
 
 import httpx
