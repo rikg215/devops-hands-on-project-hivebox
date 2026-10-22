@@ -1,3 +1,7 @@
+[![Hivebox-CI](https://github.com/rikg215/devops-hands-on-project-hivebox/actions/workflows/Hivebox-CI.yaml/badge.svg)](https://github.com/rikg215/devops-hands-on-project-hivebox/actions/workflows/Hivebox-CI.yaml)
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rikg215/devops-hands-on-project-hivebox/badge)](https://scorecard.dev/viewer/?uri=github.com/rikg215/devops-hands-on-project-hivebox)
+
 [![Dynamic DevOps Roadmap](https://img.shields.io/badge/Dynamic_DevOps_Roadmap-559e11?style=for-the-badge&logo=Vercel&logoColor=white)](https://devopsroadmap.io/getting-started/)
 [![Community](https://img.shields.io/badge/Join_Community-%23FF6719?style=for-the-badge&logo=substack&logoColor=white)](https://newsletter.devopsroadmap.io/subscribe)
 [![Telegram Group](https://img.shields.io/badge/Telegram_Group-%232ca5e0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/DevOpsHive/985)
@@ -47,3 +51,13 @@ docker run --name "app-test" app-test:v0.0.1
 **EXPECTED OUTPUT**
 
 `v0.0.1`
+
+### Phase 3: Laying the Base
+
+#### Testing
+
+```bash
+uv sync
+uv run pytest
+```
+
