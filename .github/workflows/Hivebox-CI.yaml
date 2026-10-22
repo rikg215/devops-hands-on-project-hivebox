@@ -2,15 +2,23 @@ name: Hivebox-CI
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # installs uv and Python 3.13 on the runner
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.3.0
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
         with:
           python-version: "3.13"
 
@@ -22,14 +30,14 @@ jobs:
         run: uv run pylint $(git ls-files '*.py')
 
       - name: Lint Dockerfile with hadolint
-        uses: hadolint/hadolint-action@v3.4.0
+        uses: hadolint/hadolint-action@06be81baf89a55ffd0e24b8f04a4185738dd3387 # v3.5.0
 
       - name: Run unit tests
         run: uv run pytest -v
 
       # builds the image but keeps it on the runner instead of pushing it anywhere
       - name: Build Docker image
-        uses: docker/build-push-action@v7.4.0
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           push: false
