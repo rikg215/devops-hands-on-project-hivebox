@@ -13,6 +13,7 @@ Please **do not** open a public issue for security problems.
 
 Report vulnerabilities privately through GitHub:
 **Security** tab → **Report a vulnerability**.
+https://github.com/rikg215/devops-hands-on-project-hivebox/security/advisories/new
 
 ## What to Expect
 
