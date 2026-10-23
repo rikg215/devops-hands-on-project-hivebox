@@ -1,6 +1,9 @@
 name: Hivebox-CI
 
-on: [push]
+on: 
+  pull_request: 
+  push:
+    branches: [main]
 
 permissions:
   contents: read
@@ -54,5 +57,3 @@ jobs:
               docker logs hivebox
               exit 1
             fi
-              
-            
