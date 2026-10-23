@@ -1,6 +1,8 @@
 """Datetime module for ensuring fresh temp values are stored"""
 from datetime import datetime, timedelta, timezone
 
+import os
+
 import httpx
 
 from fastapi import FastAPI
@@ -8,6 +10,11 @@ from fastapi import FastAPI
 VERSION = "v0.1.0"
 
 SENSEBOX_IDS = ["5eba5fbad46fb8001b799786", "5c21ff8f919bf8001adf2488", "5ade1acf223bd80019a1011c"]
+
+SENSEBOX_ENV_IDS = os.getenv("SENSEBOX_ENV_IDS")
+
+if SENSEBOX_ENV_IDS:
+    SENSEBOX_IDS = SENSEBOX_ENV_IDS.split(",")
 
 def box_temps():
     """Query opensensemap for temps and calculate average of values taken within the hour"""
