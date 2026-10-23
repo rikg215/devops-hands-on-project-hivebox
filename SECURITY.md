@@ -18,5 +18,5 @@ https://github.com/rikg215/devops-hands-on-project-hivebox/security/advisories/n
 ## What to Expect
 
 - I'll acknowledge within 7 days
-- If confirmed, a fix will be released as soon as practical and credited to the reporter unless anonmity is requested.
+- If confirmed, a fix will be released as soon as practical and credited to the reporter unless anonymity is requested.
 - This is a solo-maintained learning project, so response times are best effort.
