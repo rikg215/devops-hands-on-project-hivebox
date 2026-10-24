@@ -57,4 +57,16 @@ async def app_version():
 @app.get("/temperature")
 def app_temperature():
     """Return average temperature from all senseboxes"""
-    return {"temperature": box_temps()}
+    temp_avg = box_temps()
+    if temp_avg is None:
+        status = "No Data"
+    elif temp_avg < 10:
+        status = "Too Cold"
+    elif temp_avg > 37:
+        status = "Too Hot"
+    else:
+        status = "Good"
+
+    if temp_avg is not None:
+        temp_avg = round(temp_avg, 2)
+    return {"temperature": temp_avg, "status": status}

@@ -19,7 +19,7 @@ def test_temperature(monkeypatch):
     monkeypatch.setattr(app_module, "box_temps", lambda: fake_temp)
     response = client.get("/temperature")
     assert response.status_code == 200
-    assert response.json() == {"temperature": fake_temp}
+    assert response.json() == {"temperature": fake_temp, "status": "Good"}
 
 def test_metrics():
     """test function for metrics endpoint"""
