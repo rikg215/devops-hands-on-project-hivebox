@@ -20,3 +20,10 @@ def test_temperature(monkeypatch):
     response = client.get("/temperature")
     assert response.status_code == 200
     assert response.json() == {"temperature": fake_temp}
+
+def test_metrics():
+    """test function for metrics endpoint"""
+    client.get("/version")
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    assert 'handler="/version"' in response.text

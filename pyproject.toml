@@ -4,6 +4,7 @@ version = "0.0.1"
 requires-python = ">=3.13"
 dependencies = [
     "fastapi[standard]>=0.150.0",
+    "prometheus-fastapi-instrumentator>=8.1.0",
 ]
 
 [tool.fastapi]

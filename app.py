@@ -7,6 +7,8 @@ import httpx
 
 from fastapi import FastAPI
 
+from prometheus_fastapi_instrumentator import Instrumentator
+
 VERSION = "v0.1.0"
 
 SENSEBOX_IDS = ["5eba5fbad46fb8001b799786", "5c21ff8f919bf8001adf2488", "5ade1acf223bd80019a1011c"]
@@ -42,6 +44,10 @@ def box_temps():
     return None
 
 app = FastAPI()
+
+instrumentator = Instrumentator()
+instrumentator.instrument(app)
+instrumentator.expose(app)
 
 @app.get("/version")
 async def app_version():
